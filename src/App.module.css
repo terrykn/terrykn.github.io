@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  background-color: #f8f5ef;
+}
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  font-family: Raleway;
+  color: #373330;
+}
+
+.header h1 {
+  text-align: left;
+  font-size: calc(12px + 1.5vmin);
+  color: #232120;
+}
+
+.link {
+  color: #858280;
+  font-weight: bold;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+  scrollbar-color: #dcd9d5 #f8f5ef;
+  scrollbar-width: auto;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+  overscroll-behavior: none;
+  background-color: #f8f5ef;
+}
+
+.projectBox {
+  text-align: left;
+  padding: 18px;
+  margin-bottom: 12px;
+  background-color: #f2efea;
+  border-radius: 6px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.projectBox a {
+  text-align: left;
+  color: #39322b;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  font-size: calc(10px + 1.2vmin);
+  font-weight: bold;
+  text-align: center;
+}
+
+.projectBox:hover {
+  transform: translateY(-2px);
+}
+
+.projectBox a:hover {
+  color: #1c1918;
+}
