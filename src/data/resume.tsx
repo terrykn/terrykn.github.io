@@ -189,12 +189,36 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "CoPlay",
+      href: "",
+      dates: "May 2026",
+      active: true,
+      description: "Mobile app for watching videos together.",
+      technologies: ["React Native", "TypeScript"]
+    },
+    {
+      title: "Agenda",
+      href: "https://get-agenda.vercel.app/",
+      dates: "Apr 2026",
+      active: true,
+      description: "Mobile app for tracking projects, habits, and calendar events.",
+      technologies: ["React", "TypeScript", "Ionic Framework", "Capacitor"]
+    },
+    {
+      title: "Portfolio",
+      href: "",
+      dates: "Mar 2026",
+      active: true,
+      description: "Personal portfolio featuring my projects and experience. (you're already here!)",
+      technologies: ["React", "TypeScript", "Next.js", "shadcn/ui"]
+    },
+    {
       title: "Growtopia Item Market",
       href: "https://growtopia-trade.vercel.app",
       dates: "Nov 2025",
       active: true,
       description: "Developed an unofficial item marketplace web application for the Growtopia MMO game.",
-      technologies: ["React", "JavaScript", "HTML/CSS", "Firebase", "Mantine UI"],
+      technologies: ["React", "JavaScript", "Firebase", "Mantine UI"],
       links: [
         {
           type: "Website",
@@ -228,7 +252,7 @@ export const DATA = {
       dates: "Jul 2025",
       active: true,
       description: "Created a web app for generating album and lyric posters from Spotify album and song URLs.",
-      technologies: ["React", "JavaScript", "HTML/CSS", "RapidAPI"],
+      technologies: ["React", "JavaScript", "RapidAPI"],
       links: [
         {
           type: "Website",
@@ -267,7 +291,7 @@ export const DATA = {
       dates: "Mar 2025",
       active: true,
       description: "Application for discovering recipes, watching cooking videos, and generating grocery lists.",
-      technologies: ["React", "JavaScript", "CSS"],
+      technologies: ["React", "JavaScript", "Firebase", "RapidAPI", "MaterialUI"],
       links: [
         {
           type: "Website",
