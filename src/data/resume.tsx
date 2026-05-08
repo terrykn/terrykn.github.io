@@ -194,7 +194,12 @@ export const DATA = {
       dates: "May 2026",
       active: true,
       description: "Mobile app for watching videos together.",
-      technologies: ["React Native", "TypeScript"]
+      technologies: ["React Native", "TypeScript"],
+      links: [
+
+      ],
+      image: "",
+      video: "",
     },
     {
       title: "Agenda",
@@ -202,7 +207,16 @@ export const DATA = {
       dates: "Apr 2026",
       active: true,
       description: "Mobile app for tracking projects, habits, and calendar events.",
-      technologies: ["React", "TypeScript", "Ionic Framework", "Capacitor"]
+      technologies: ["React", "TypeScript", "Ionic Framework", "Capacitor"],
+      links: [
+        {
+          type: "Landing Page",
+          href: "https://get-agenda.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
     },
     {
       title: "Portfolio",
@@ -210,7 +224,16 @@ export const DATA = {
       dates: "Mar 2026",
       active: true,
       description: "Personal portfolio featuring my projects and experience. (you're already here!)",
-      technologies: ["React", "TypeScript", "Next.js", "shadcn/ui"]
+      technologies: ["React", "TypeScript", "Next.js", "shadcn/ui"],
+      links: [
+        {
+          type: "Website",
+          href: "https://terrykn.github.io",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
     },
     {
       title: "Growtopia Item Market",
