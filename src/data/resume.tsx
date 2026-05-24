@@ -190,13 +190,39 @@ export const DATA = {
   projects: [
     {
       title: "CoPlay",
+      href: "https://coplay-music.vercel.app",
+      dates: "May 2026",
+      active: true,
+      description: "Mobile app for watching videos and listening to music together.",
+      technologies: ["React Native", "TypeScript"],
+      links: [
+        {
+          type: "Landing Page",
+          href: "https://coplay-music.vercel.app",
+          icon: <Icons.globe className="size-3" />,
+        }
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Mobile App Landing Template",
       href: "",
       dates: "May 2026",
       active: true,
-      description: "Mobile app for watching videos together.",
-      technologies: ["React Native", "TypeScript"],
+      description: "Built a flexible mobile app landing page template with a beautiful, modern layout.",
+      technologies: ["React", "Next.js 15", "shadcn/ui", "Tailwind CSS", "Framer Motion"],
       links: [
-
+        {
+          type: "Github",
+          href: "https://github.com/terrykn/lumina-mobile-app-landing-template",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Demo",
+          href: "https://lumina-landing-template.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
       ],
       image: "",
       video: "",
