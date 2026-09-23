@@ -186,7 +186,7 @@ export const portfolioData: PortfolioData = {
       description: [
         "Led a student team on prototyping and presenting an application to crowdsource critical information during floods in New Brunswick.",
       ],
-      technologies: ["Rapid Prototyping", "UI/UX Design", "Public Speaking"],
+      technologies: ["Rapid Prototyping", "UI/UX Design"],
     },
 
     {
