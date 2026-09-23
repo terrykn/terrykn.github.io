@@ -75,7 +75,7 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
                   {honorsAndActivities.activities.map((act) => (
                     <span
                       key={act}
-                      className="inline-flex items-center rounded-lg bg-muted border border-border px-2.5 py-1 text-xs font-medium text-foreground"
+                      className="inline-flex items-center rounded-full bg-muted border border-border px-2 py-1 text-xs font-medium text-foreground"
                     >
                       {act}
                     </span>

@@ -69,6 +69,19 @@ export interface HonorsAndActivities {
   activities: string[];
 }
 
+export interface GalleryImage {
+  src: string;
+  text: string;
+}
+
+export interface GallerySubsection {
+  id: string;
+  title: string;
+  images: GalleryImage[];
+}
+
+export type GalleryData = GallerySubsection[];
+
 export interface PortfolioData {
   meta: {
     title: string;
@@ -81,6 +94,7 @@ export interface PortfolioData {
   projects: ProjectItem[];
   education?: EducationItem[];
   honorsAndActivities?: HonorsAndActivities;
+  gallery?: GalleryData;
   footer: {
     copyrightText: string;
     links: SocialLink[];

@@ -12,6 +12,7 @@ export const portfolioData: PortfolioData = {
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
+    { label: "Gallery", href: "#gallery" },
   ],
 
   hero: {
@@ -412,6 +413,38 @@ export const portfolioData: PortfolioData = {
       "Circle K",
     ],
   },
+
+  gallery: [
+    // {
+    //   id: "travel",
+    //   title: "Travel",
+    //   images: [
+
+    //   ],
+    // },
+    {
+      id: "sailing",
+      title: "Sailing",
+      images: Array.from({ length: 16 }, (_, i) => ({
+        src: `/media/gallery-sailing/${i + 1}.jpg`,
+        text: ""
+      }))
+    },
+    // {
+    //   id: "rutgers",
+    //   title: "Rutgers",
+    //   images: [
+
+    //   ],
+    // },
+    {
+      id: "example",
+      title: "Example section",
+      images: [
+
+      ],
+    },
+  ],
 
   footer: {
     copyrightText: `© ${new Date().getFullYear()} Terry Nguyen. All rights reserved.`,

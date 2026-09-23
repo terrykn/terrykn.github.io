@@ -40,7 +40,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 <DecayCard
                   width={100}
                   height={130}
-                  image="/pfp.jpg"
+                  image="/media/pfp.jpg"
                   baseFrequency={0.001}
                   numOctaves={5}
                   seed={4}
@@ -110,9 +110,9 @@ export function HeroSection({ data }: HeroSectionProps) {
           {/* Large profile photo on desktop */}
           <div className="hidden md:flex justify-center md:justify-end rotate-2">
             <DecayCard
-              width={140}
-              height={180}
-              image="/pfp.jpg"
+              width={160}
+              height={200}
+              image="/media/pfp.jpg"
               baseFrequency={0.001}
               numOctaves={5}
               seed={4}

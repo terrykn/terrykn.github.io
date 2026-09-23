@@ -39,7 +39,7 @@ export function Section({
       )}
 
       {fullWidthContent ? (
-        <div className="w-full px-6 sm:px-8">{children}</div>
+        <div className="w-full">{children}</div>
       ) : (
         <div className="max-w-4xl mx-auto px-6 sm:px-8">{children}</div>
       )}
