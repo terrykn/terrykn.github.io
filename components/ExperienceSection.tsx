@@ -108,7 +108,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                      className="p-1 rounded-md text-muted-foreground group-hover:text-primary transition-colors"
+                      className="p-1 rounded-xl text-muted-foreground group-hover:text-primary transition-colors"
                       aria-hidden="true"
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -159,7 +159,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                             {item.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="text-[11px] font-medium rounded-md bg-muted/80 border border-border/70 px-2 py-0.5 text-muted-foreground"
+                                className="text-xs font-medium rounded-full bg-muted/80 border border-border/70 px-2 py-1 text-muted-foreground"
                               >
                                 {tech}
                               </span>

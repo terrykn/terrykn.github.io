@@ -33,17 +33,25 @@ export interface ExperienceItem {
   technologies?: string[];
 }
 
+export type ProjectColor =
+  | "peach"
+  | "butter"
+  | "mint"
+  | "sky"
+  | "lavender"
+  | "coral";
+
 export interface ProjectItem {
   id: string;
   title: string;
+  date?: string;
   description: string;
   tags: string[];
   demoUrl?: string;
   demoLabel?: string;
   sourceUrl?: string;
   sourceLabel?: string;
-  featured?: boolean;
-  date?: string;
+  color?: ProjectColor;
 }
 
 export interface EducationItem {
