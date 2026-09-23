@@ -18,20 +18,36 @@ export function HeroSection({ data }: HeroSectionProps) {
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-12 lg:gap-20">
           {/* Left: Hero content */}
           <div>
-            {/* Main headline */}
-            <div className="space-y-1 mb-4">
-              <p className="text-base sm:text-lg font-semibold text-muted-foreground">
-                {data.greeting ?? "Hi, I'm"}
-              </p>
+            {/* Header + mobile profile photo */}
+            <div className="flex items-center justify-between gap-6 mb-4">
+              <div className="space-y-1">
+                <p className="text-base sm:text-lg font-semibold text-muted-foreground">
+                  {data.greeting ?? "Hi, I'm"}
+                </p>
 
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
-                {data.name}
-                <span className="text-primary">.</span>
-              </h1>
+                <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
+                  {data.name}
+                  <span className="text-primary">.</span>
+                </h1>
 
-              <p className="text-xl sm:text-2xl font-bold text-muted-foreground">
-                {data.title}
-              </p>
+                <p className="text-xl sm:text-2xl font-bold text-muted-foreground">
+                  {data.title}
+                </p>
+              </div>
+
+              {/* Small profile card on smaller screens */}
+              <div className="shrink-0 md:hidden rotate-2">
+                <DecayCard
+                  width={100}
+                  height={130}
+                  image="/pfp.jpg"
+                  baseFrequency={0.001}
+                  numOctaves={5}
+                  seed={4}
+                  maxDisplacement={200}
+                  movementBound={50}
+                />
+              </div>
             </div>
 
             {/* Decorative squiggle */}
@@ -91,13 +107,13 @@ export function HeroSection({ data }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Right: Profile photo */}
-          <div className="flex justify-center md:justify-end">
+          {/* Large profile photo on desktop */}
+          <div className="hidden md:flex justify-center md:justify-end rotate-2">
             <DecayCard
               width={140}
               height={180}
               image="/pfp.jpg"
-              baseFrequency={0}
+              baseFrequency={0.001}
               numOctaves={5}
               seed={4}
               maxDisplacement={200}
