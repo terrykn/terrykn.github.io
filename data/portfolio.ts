@@ -4,7 +4,7 @@ export const portfolioData: PortfolioData = {
   meta: {
     title: "Terry Nguyen | Full Stack Software Engineer",
     description:
-      "Personal portfolio of Terry Nguyen, Full Stack Software Engineer specializing in scalable web systems, cloud infrastructure, and AI engineering.",
+      "Personal portfolio of Terry Nguyen, Full Stack Software Engineer at Verizon specializing in scalable systems, cloud infrastructure, and AI engineering.",
   },
 
   navigation: [
@@ -19,7 +19,7 @@ export const portfolioData: PortfolioData = {
     greeting: "Hi, I'm",
     name: "Terry",
     title: "Software Engineer",
-    bio: "I'm a full stack software engineer at Verizon with experience designing, developing, and owning applications, APIs, and AI-powered systems end-to-end to streamline workflows and support enterprise Linux infrastructure.",
+    bio: "I'm a full stack software engineer at Verizon, where I design and build internal platforms and AI-powered tools from concept to production — streamlining engineering workflows and supporting the enterprise Linux infrastructure that powers Verizon's business wireline applications.",
     socialLinks: [
       { label: "Projects", href: "#projects", isPrimary: true },
       {
