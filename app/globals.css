@@ -2,35 +2,41 @@
 
 /* ─── Design tokens ────────────────────────────────────────────────────────── */
 :root {
-  /* Core palette */
-  --background: #fffdfb;          /* warm cream */
-  --foreground: #1c1612;          /* deep warm brown */
+  /* Core palette — deep space, near-black with a cool blue cast */
+  --background: #06070b;          /* obsidian black */
+  --foreground: #f2f5fa;          /* crisp off-white */
 
-  /* Primary – orange */
-  --primary: #ea580c;
-  --primary-foreground: #faf7f2;
+  /* Primary – electric blue accent, light enough to read over the ASCII glow */
+  --primary: #5f97ff;
+  --primary-foreground: #06070b;
 
   /* Card surfaces */
-  --card: #f8f4ed;
-  --card-foreground: #1c1612;
+  --card: #0c0e15;                /* lifted panel */
+  --card-foreground: #f2f5fa;
 
   /* Muted / secondary surfaces */
-  --muted: #ede8df;
-  --muted-foreground: #7a6a5a;
+  --muted: #12151d;
+  --muted-foreground: #a6aec2;    /* bright enough to read on any backdrop */
 
-  /* Accent – amber/peach */
-  --accent: #fcd9a8;
-  --accent-foreground: #92400e;
+  /* Accent – translucent steel blue */
+  --accent: #162238;
+  --accent-foreground: #a8c4f2;
 
   /* Border */
-  --border: #f0e9de;
+  --border: #1a1e2a;
 
   /* Highlight rings */
-  --ring: #ea580c;
+  --ring: #4d82f7;
 
   /* Popover */
-  --popover: #faf7f2;
-  --popover-foreground: #1c1612;
+  --popover: #0c0e15;
+  --popover-foreground: #f2f5fa;
+
+  /* GradientASCII backdrop light ramp — from shadow edge to brightest point */
+  --ascii-1: #101c4d;             /* deep space blue (shadow edge) */
+  --ascii-2: #2f5adf;             /* electric blue */
+  --ascii-3: #8ec7ff;             /* cool sky */
+  --ascii-4: #f2f7ff;             /* star white (brightest) */
 }
 
 /* ─── Tailwind theme bridge ─────────────────────────────────────────────────── */
@@ -58,7 +64,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  color-scheme: light;
+  color-scheme: dark;
   height: 100%;
   overscroll-behavior: none;
 }
@@ -75,6 +81,6 @@ body {
 
 /* ─── Selection color ───────────────────────────────────────────────────────── */
 ::selection {
-  background: color-mix(in srgb, var(--primary) 25%, transparent);
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
   color: var(--foreground);
 }

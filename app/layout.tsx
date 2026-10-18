@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
 import { portfolioData } from "@/data/portfolio";
-import DotField from "@/components/react-bits/DotField";
+import AsciiBackdrop from "@/components/react-bits/AsciiBackdrop";
 import "./globals.css";
 
 const dmSans = localFont({
@@ -44,18 +44,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${dmSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground relative">
-        {/* Fixed subtle, warm dot field background */}
+        {/* Fixed futuristic ASCII light backdrop (horizon glow) */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-          <DotField
-            dotRadius={1.2}
-            dotSpacing={18}
-            cursorRadius={260}
-            bulgeOnly={true}
-            bulgeStrength={30}
-            gradientFrom="rgba(255, 111, 8, 0.91)"
-            gradientTo="rgba(255, 180, 76, 0.8)"
-            glowColor="rgba(255, 244, 228, 0.06)"
-            glowRadius={100}
+          <AsciiBackdrop />
+          {/* Top of the page fades to black so text stays readable */}
+          <div
+            className="absolute inset-x-0 top-0 h-[38vh]"
+            style={{ background: "linear-gradient(to bottom, var(--background) 0%, var(--background) 22%, transparent 100%)" }}
           />
         </div>
 

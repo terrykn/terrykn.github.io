@@ -32,7 +32,10 @@ const DecayCard: React.FC<DecayCardProps> = ({
         x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0,
         y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0
     });
-    const cachedCursor = useRef<{ x: number; y: number }>({ ...cursor.current });
+    const cachedCursor = useRef<{ x: number; y: number }>({
+        x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0,
+        y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0
+    });
     const winsize = useRef<{ width: number; height: number }>({
         width: typeof window !== 'undefined' ? window.innerWidth : 0,
         height: typeof window !== 'undefined' ? window.innerHeight : 0
@@ -65,7 +68,7 @@ const DecayCard: React.FC<DecayCardProps> = ({
         const render = () => {
             let targetX = lerp(imgValues.imgTransforms.x, map(cursor.current.x, 0, winsize.current.width, -120, 120), 0.1);
             let targetY = lerp(imgValues.imgTransforms.y, map(cursor.current.y, 0, winsize.current.height, -120, 120), 0.1);
-            let targetRz = lerp(imgValues.imgTransforms.rz, map(cursor.current.x, 0, winsize.current.width, -10, 10), 0.1);
+            const targetRz = lerp(imgValues.imgTransforms.rz, map(cursor.current.x, 0, winsize.current.width, -10, 10), 0.1);
 
             if (targetX > movementBound) targetX = movementBound + (targetX - movementBound) * 0.2;
             if (targetX < -movementBound) targetX = -movementBound + (targetX + movementBound) * 0.2;

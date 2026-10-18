@@ -19,7 +19,7 @@ export const portfolioData: PortfolioData = {
     greeting: "Hi, I'm",
     name: "Terry",
     title: "Software Engineer",
-    bio: "I'm a Full Stack Software Engineer at Verizon with experience designing and building internal platforms and AI-powered tools from concept to production, automating system-engineering workflows and supporting enterprise Linux infrastructure.",
+    bio: "I'm a Full Stack Software Engineer at Verizon building AI-powered infrastructure tools from concept to production. My work centers on automating system-engineering workflows and managing enterprise Linux infrastructure for Verizon's business communications products.",
     socialLinks: [
       { label: "Projects", href: "#projects", isPrimary: true },
       {

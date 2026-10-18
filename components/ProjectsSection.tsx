@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import { ProjectItem, ProjectColor } from "@/types/portfolio";
+import { ProjectItem } from "@/types/portfolio";
 import { Section } from "./Section";
 import { PinContainer } from "@/components/aceternity/ui/3d-pin";
 import { cn } from "@/lib/utils";
@@ -13,57 +13,9 @@ interface ProjectsSectionProps {
 
 const TILTS = [-2.2, 1.8, -1.5, 2.3, -1.8, 1.3, -2.4, 1.7, -1.1, 2.0];
 
-const PROJECT_COLORS: Record<
-  ProjectColor,
-  {
-    card: string;
-    text: string;
-    tag: string;
-    accent: string;
-  }
-> = {
-  peach: {
-    card: "bg-[#FFE3D6]",
-    text: "text-[#7A321F]",
-    tag: "bg-[#FFF1EA] text-[#A7442B] border-[#FFB99F]",
-    accent: "#FF7043",
-  },
-
-  butter: {
-    card: "bg-[#FFF1B8]",
-    text: "text-[#704E00]",
-    tag: "bg-[#FFF8D9] text-[#8A6500] border-[#F4D46A]",
-    accent: "#E9A900",
-  },
-
-  mint: {
-    card: "bg-[#DDF5E7]",
-    text: "text-[#17613D]",
-    tag: "bg-[#EFFAF3] text-[#267A50] border-[#A9DFC0]",
-    accent: "#35A66F",
-  },
-
-  sky: {
-    card: "bg-[#DDF0FF]",
-    text: "text-[#20527E]",
-    tag: "bg-[#EEF7FF] text-[#28669D] border-[#A9D2F4]",
-    accent: "#3788D8",
-  },
-
-  lavender: {
-    card: "bg-[#EDE3FF]",
-    text: "text-[#56328F]",
-    tag: "bg-[#F6F0FF] text-[#6840A3] border-[#D2BDF8]",
-    accent: "#8B5CF6",
-  },
-
-  coral: {
-    card: "bg-[#FFD9DC]",
-    text: "text-[#7C2932]",
-    tag: "bg-[#FFF0F1] text-[#A63D47] border-[#F2AAB0]",
-    accent: "#E85D68",
-  },
-};
+// Sleek monochrome project cards — single accent (the primary token)
+// keeps everything theme-driven (see docs/ARCHITECTURE.md).
+const TAG_STYLES = "bg-muted border-border text-muted-foreground";
 
 const normalizeIndex = (idx: number, len: number) => {
   const mod = ((idx % len) + len) % len;
@@ -185,11 +137,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           className={cn(
             "absolute left-3 top-1/2 z-40 -translate-y-1/2",
             "flex h-11 w-11 items-center justify-center rounded-full",
-            "border border-black/5 bg-white shadow-lg",
-            "text-foreground",
-            "transition-all duration-200",
-            "hover:scale-105 hover:border-primary/30 hover:text-primary",
-            "active:scale-95",
+            "border border-border bg-popover shadow-lg shadow-black/40",
+            "text-muted-foreground",
             "sm:left-6 sm:h-12 sm:w-12 md:left-8",
           )}
         >
@@ -204,11 +153,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           className={cn(
             "absolute right-3 top-1/2 z-40 -translate-y-1/2",
             "flex h-11 w-11 items-center justify-center rounded-full",
-            "border border-black/5 bg-white shadow-lg",
-            "text-foreground",
-            "transition-all duration-200",
-            "hover:scale-105 hover:border-primary/30 hover:text-primary",
-            "active:scale-95",
+            "border border-border bg-popover shadow-lg shadow-black/40",
+            "text-muted-foreground",
             "sm:right-6 sm:h-12 sm:w-12 md:right-8",
           )}
         >
@@ -239,9 +185,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             const projectIndex = idx % projects.length;
             const tilt = TILTS[projectIndex % TILTS.length];
 
-            const colors =
-              PROJECT_COLORS[project.color ?? "peach"];
-
             return (
               <div
                 key={`${project.id}-${idx}`}
@@ -254,21 +197,21 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   title={pinTitle}
                   href={primaryHref}
                   tilt={tilt}
-                  accentColor={colors.accent}
-                  cardClassName={colors.card}
+                  accentColor="var(--primary)"
+                  cardClassName="bg-card"
                   containerClassName="h-[22rem] w-full max-w-[19rem] flex items-center justify-center sm:max-w-[20.5rem]"
                 >
                   <div
                     className={cn(
                       "flex h-[19rem] w-[17rem] flex-col justify-between",
                       "p-1 sm:w-[18.5rem]",
-                      colors.text,
+                      "text-foreground",
                     )}
                   >
                     <div>
                       {/* Header */}
                       <div className="mb-3 flex items-start justify-between gap-2">
-                        <h3 className="truncate text-xl font-extrabold leading-tight tracking-[-0.025em]">
+                        <h3 className="truncate text-xl font-semibold leading-tight tracking-[-0.025em]">
                           {project.title}
                         </h3>
 
@@ -276,8 +219,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                           <span
                             className={cn(
                               "shrink-0 rounded-full px-2.5 py-1",
-                              "text-[10px] font-bold tracking-wide",
-                              colors.tag,
+                              "text-[10px] font-semibold tracking-wide",
+                              TAG_STYLES,
                             )}
                           >
                             {project.date}
@@ -297,8 +240,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                             key={tag}
                             className={cn(
                               "rounded-full border px-2.5 py-1",
-                              "text-[10px] font-bold tracking-wide",
-                              colors.tag,
+                              "text-[10px] font-semibold tracking-wide",
+                              TAG_STYLES,
                             )}
                           >
                             {tag}
@@ -309,8 +252,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                           <span
                             className={cn(
                               "rounded-full border px-2.5 py-1",
-                              "text-[10px] font-bold",
-                              colors.tag,
+                              "text-[10px] font-semibold",
+                              TAG_STYLES,
                               "opacity-60",
                             )}
                           >
@@ -321,7 +264,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     </div>
 
                     {/* Links */}
-                    <div className="flex items-center gap-4 border-t border-black/5 pt-3">
+                    <div className="flex items-center gap-4 border-t border-border pt-3">
                       {project.demoUrl && (
                         <a
                           href={project.demoUrl}
@@ -330,9 +273,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                           onClick={(e) => e.stopPropagation()}
                           className={cn(
                             "inline-flex items-center gap-1.5",
-                            "text-xs font-extrabold",
-                            "transition-transform duration-200",
-                            "hover:translate-x-0.5",
+                            "text-xs font-semibold",
                           )}
                         >
                           <ExternalLink className="h-3.5 w-3.5" />
@@ -346,7 +287,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold opacity-60 transition-opacity hover:opacity-100"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold opacity-70"
                         >
                           <svg
                             className="h-3.5 w-3.5"
@@ -375,30 +316,20 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
       {/* Indicators */}
       <div className="mt-2 flex items-center justify-center gap-1.5">
-        {projects.map((project, idx) => {
-          const colors =
-            PROJECT_COLORS[project.color ?? "peach"];
-
-          return (
-            <button
-              key={project.id}
-              type="button"
-              onClick={() => handleDotClick(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={cn(
-                "h-1.5 cursor-pointer rounded-full transition-all duration-300",
-                activeProjectIndex === idx
-                  ? "w-6"
-                  : "w-1.5 bg-border hover:bg-muted-foreground/50",
-              )}
-              style={
-                activeProjectIndex === idx
-                  ? { backgroundColor: colors.accent }
-                  : undefined
-              }
-            />
-          );
-        })}
+        {projects.map((project, idx) => (
+          <button
+            key={project.id}
+            type="button"
+            onClick={() => handleDotClick(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            className={cn(
+              "h-1.5 cursor-pointer rounded-full transition-all duration-300",
+              activeProjectIndex === idx
+                ? "w-6 bg-primary"
+                : "w-1.5 bg-border",
+            )}
+          />
+        ))}
       </div>
     </Section>
   );

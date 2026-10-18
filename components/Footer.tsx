@@ -22,7 +22,7 @@ export function Footer({ copyrightText, links }: FooterProps) {
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors duration-150"
+              className="text-sm font-semibold text-muted-foreground"
             >
               {link.label}
             </a>

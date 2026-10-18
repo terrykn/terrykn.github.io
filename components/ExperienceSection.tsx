@@ -57,7 +57,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
             const isOpen = expandedIds.has(item.id);
 
             return (
-              <div className="rounded-xl border border-border/80 bg-card/60 p-3.5 sm:p-4 transition-all duration-200 hover:border-primary/40 hover:bg-card">
+              <div className="rounded-xl border border-border bg-card p-3.5 sm:p-4">
                 {/* Collapsible Trigger Header */}
                 <div
                   role="button"
@@ -73,7 +73,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                   className="flex items-start justify-between gap-3 cursor-pointer select-none group"
                 >
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm sm:text-base font-extrabold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-sm sm:text-base font-semibold tracking-tight text-foreground">
                       {item.role}
                     </h3>
                     <div className="flex items-center gap-2 mt-0.5 flex-wrap">
@@ -83,7 +83,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-xs sm:text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                          className="text-xs sm:text-sm font-semibold text-primary inline-flex items-center gap-1"
                         >
                           {item.company}
                           <ExternalLink className="w-3 h-3 opacity-70" />
@@ -108,7 +108,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                      className="p-1 rounded-xl text-muted-foreground group-hover:text-primary transition-colors"
+                      className="p-1 rounded-xl text-muted-foreground"
                       aria-hidden="true"
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -136,7 +136,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                       }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-3.5 mt-3 border-t border-border/60">
+                      <div className="pt-3.5 mt-3 border-t border-border">
                         {/* Bullets */}
                         <ul className="space-y-2 mb-3">
                           {item.description.map((bullet, idx) => (
@@ -145,7 +145,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                               className="flex gap-2.5 text-xs sm:text-sm leading-relaxed text-muted-foreground"
                             >
                               <span
-                                className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-primary/70"
+                                className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-primary"
                                 aria-hidden="true"
                               />
                               <span>{bullet}</span>
@@ -159,7 +159,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                             {item.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="text-xs font-medium rounded-full bg-muted/80 border border-border/70 px-2 py-1 text-muted-foreground"
+                                className="text-xs font-medium rounded-full bg-muted border border-border px-2 py-1 text-muted-foreground"
                               >
                                 {tech}
                               </span>

@@ -21,13 +21,13 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
                 className="rounded-xl border border-border bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
               >
                 <div>
-                  <h3 className="text-base font-extrabold text-foreground">
+                  <h3 className="text-base font-semibold text-foreground tracking-tight">
                     {item.institution}
                   </h3>
                   <p className="mt-0.5 text-sm font-semibold text-muted-foreground">
                     {item.degree}
                     {item.gpa && (
-                      <span className="ml-2 text-xs font-bold text-primary bg-accent/60 px-2 py-0.5 rounded-full">
+                      <span className="ml-2 text-xs font-semibold text-primary bg-accent px-2 py-0.5 rounded-full">
                         GPA {item.gpa}
                       </span>
                     )}
@@ -52,7 +52,7 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {honorsAndActivities.honors?.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-primary mb-3">
+                <h3 className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
                   Awards
                 </h3>
                 <ul className="space-y-2">
@@ -68,7 +68,7 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
 
             {honorsAndActivities.activities?.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-primary mb-3">
+                <h3 className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
                   Activities
                 </h3>
                 <div className="flex flex-wrap gap-1.5">

@@ -13,30 +13,30 @@ export function HeroSection({ data }: HeroSectionProps) {
   const secondaryLinks = data.socialLinks.filter((l) => !l.isPrimary);
 
   return (
-    <section id="about" className="pt-28 pb-4 sm:pt-28 sm:pb-18">
-      <div className="max-w-4xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-12 lg:gap-20">
+    <section id="about" className="pt-36 pb-8 sm:pt-44 sm:pb-14">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-16 lg:gap-28">
           {/* Left: Hero content */}
           <div>
             {/* Header + mobile profile photo */}
             <div className="flex items-center justify-between gap-6 mb-4">
               <div className="space-y-1">
-                <p className="text-base sm:text-lg font-semibold text-muted-foreground">
+                <p className="text-base sm:text-lg font-medium text-primary font-mono tracking-wide">
                   {data.greeting ?? "Hi, I'm"}
                 </p>
 
-                <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
+                <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-foreground leading-[1.05]">
                   {data.name}
                   <span className="text-primary">.</span>
                 </h1>
 
-                <p className="text-xl sm:text-2xl font-bold text-muted-foreground">
+                <p className="mt-2 text-xl sm:text-2xl font-medium text-muted-foreground tracking-tight">
                   {data.title}
                 </p>
               </div>
 
               {/* Small profile card on smaller screens */}
-              <div className="shrink-0 md:hidden rotate-2">
+              <div className="shrink-0 md:hidden">
                 <DecayCard
                   width={100}
                   height={130}
@@ -50,27 +50,8 @@ export function HeroSection({ data }: HeroSectionProps) {
               </div>
             </div>
 
-            {/* Decorative squiggle */}
-            <svg
-              className="mb-4 text-primary"
-              width="70"
-              height="14"
-              viewBox="0 0 80 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 12 C10 4, 18 4, 26 8 C34 12, 42 12, 50 8 C58 4, 66 4, 74 8"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </svg>
-
             {/* Bio */}
-            <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-muted-foreground mb-6">
+            <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-muted-foreground mb-10">
               {data.bio}
             </p>
 
@@ -108,7 +89,7 @@ export function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           {/* Large profile photo on desktop */}
-          <div className="hidden md:flex justify-center md:justify-end rotate-2">
+          <div className="hidden md:flex justify-center md:justify-end">
             <DecayCard
               width={160}
               height={200}

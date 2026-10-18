@@ -38,22 +38,25 @@ function computeDelays(
     const a = active ?? -1;
     const p = prev ?? -1;
 
-    // Extending: top-to-bottom cascade from the previous frontier
+    // Extending: cascade runs bottom-to-top, starting at the hovered item
     if (a > p) {
         if (p < 0) {
-            return { dotDelay: index * STAGGER, lineDelay: index * STAGGER + LINE_OFFSET };
+            return {
+                dotDelay: (a - index) * STAGGER,
+                lineDelay: (a - 1 - index) * STAGGER + LINE_OFFSET,
+            };
         }
         return {
-            dotDelay: index > p ? (index - p) * STAGGER : 0,
-            lineDelay: index === p ? 0 : index > p ? (index - p) * STAGGER + LINE_OFFSET : 0,
+            dotDelay: index > p ? (a - index) * STAGGER : 0,
+            lineDelay: index >= p ? (a - 1 - index) * STAGGER + LINE_OFFSET : 0,
         };
     }
 
-    // Retracting: bottom-to-top reverse cascade
+    // Retracting: cascade runs bottom-to-top from the release point upward
     if (a < p) {
         return {
-            dotDelay: index <= p && index > a ? (p - index) * STAGGER : 0,
-            lineDelay: index >= Math.max(a, 0) && index < p ? (p - 1 - index) * STAGGER + LINE_OFFSET : 0,
+            dotDelay: index <= p && index > a ? (index - a) * STAGGER : 0,
+            lineDelay: index >= Math.max(a, 0) && index < p ? (index - a) * STAGGER + LINE_OFFSET : 0,
         };
     }
 
@@ -101,7 +104,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
     const lineFillStyle: React.CSSProperties = {
         backgroundColor: styles.activeLineColor,
         transform: isLineActive ? "scaleY(1)" : "scaleY(0)",
-        transformOrigin: "top",
+        transformOrigin: "bottom",
         transitionProperty: "transform",
         transitionDuration: `${LINE_DURATION}s`,
         transitionDelay: `${lineDelay}s`,

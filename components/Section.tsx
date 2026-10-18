@@ -18,16 +18,12 @@ export function Section({
   fullWidthContent = false,
 }: SectionProps) {
   return (
-    <section id={id} className={`py-8 sm:py-12 ${className}`}>
+    <section id={id} className={`py-16 sm:py-24 ${className}`}>
       {title && (
-        <header className="max-w-4xl mx-auto px-6 sm:px-8 mb-6 sm:mb-8">
-          {/* Small hand-drawn accent mark above heading */}
-          <div className="flex items-center gap-3 mb-2">
-            <svg width="24" height="8" viewBox="0 0 28 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M2 8 C6 2, 12 2, 14 5 C16 8, 22 8, 26 2" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" fill="none"/>
-            </svg>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground leading-tight">
+        <header className="max-w-4xl mx-auto px-6 sm:px-8 mb-8 sm:mb-12">
+          {/* Minimal accent rule */}
+          <div className="mb-4 h-px w-10 bg-primary" aria-hidden="true" />
+          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-foreground leading-tight">
             {title}
           </h2>
           {subtitle && (

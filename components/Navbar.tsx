@@ -17,27 +17,15 @@ function LogoMark() {
   );
 }
 
-const NAV_HOVER_COLORS: Record<string, { bgColor: string; textColor: string }> = {
-  about:      { bgColor: "var(--primary)",         textColor: "var(--primary-foreground)" },
-  experience: { bgColor: "var(--foreground)",       textColor: "var(--background)" },
-  projects:   { bgColor: "var(--primary)",         textColor: "var(--primary-foreground)" },
-  education:  { bgColor: "var(--accent-foreground)",textColor: "var(--background)" },
-};
-
 export function Navbar({ links }: NavbarProps) {
   const navLinks = links.filter(
     (link) => !link.label.toLowerCase().includes("skill")
   );
 
-  const bubbleItems = navLinks.map((link, i) => ({
+  const bubbleItems = navLinks.map((link) => ({
     label: link.label.toLowerCase(),
     href: link.href,
     ariaLabel: `Go to ${link.label}`,
-    rotation: i % 2 === 0 ? -6 : 6,
-    hoverStyles: NAV_HOVER_COLORS[link.label.toLowerCase()] ?? {
-      bgColor: "var(--primary)",
-      textColor: "var(--primary-foreground)",
-    },
   }));
 
   return (
@@ -46,7 +34,7 @@ export function Navbar({ links }: NavbarProps) {
         logo={<LogoMark />}
         items={bubbleItems}
         useFixedPosition={true}
-        menuBg="var(--background)"
+        menuBg="var(--primary)"
         menuContentColor="var(--foreground)"
         animationEase="back.out(1.4)"
         animationDuration={0.45}

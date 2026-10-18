@@ -67,7 +67,7 @@ const DEFAULT_ITEMS: MenuItem[] = [
 ];
 
 export default function BubbleMenu({
-  logo,
+  // `logo` is accepted for API compatibility but not rendered in this variant
   onMenuClick,
   className,
   style,
@@ -198,11 +198,7 @@ export default function BubbleMenu({
           .bubble-menu-items .pill-link {
             transform: rotate(var(--item-rot));
           }
-          .bubble-menu-items .pill-link:hover {
-            transform: rotate(var(--item-rot)) scale(1.06);
-            background: var(--hover-bg) !important;
-            color: var(--hover-color) !important;
-          }
+          .bubble-menu-items .pill-link:hover {}
           .bubble-menu-items .pill-link:active {
             transform: rotate(var(--item-rot)) scale(.94);
           }
@@ -225,11 +221,7 @@ export default function BubbleMenu({
             padding: clamp(1rem, 2vw, 2rem) 0;
             min-height: 80px !important;
           }
-          .bubble-menu-items .pill-link:hover {
-            transform: scale(1.06);
-            background: var(--hover-bg);
-            color: var(--hover-color);
-          }
+          .bubble-menu-items .pill-link:hover {}
           .bubble-menu-items .pill-link:active {
             transform: scale(.94);
           }
@@ -289,14 +281,14 @@ export default function BubbleMenu({
           onClick={handleToggle}
           aria-label={menuAriaLabel}
           aria-pressed={isMenuOpen}
-          style={{ background: menuBg }}
+          style={{ background: 'var(--foreground)' }}
         >
           <span
             className="menu-line block mx-auto rounded-[2px]"
             style={{
               width: 26,
               height: 2,
-              background: menuContentColor,
+              background: 'var(--background)',
               transform: isMenuOpen ? 'translateY(4px) rotate(45deg)' : 'none'
             }}
           />
@@ -306,7 +298,7 @@ export default function BubbleMenu({
               marginTop: '6px',
               width: 26,
               height: 2,
-              background: menuContentColor,
+              background: 'var(--background)',
               transform: isMenuOpen ? 'translateY(-4px) rotate(-45deg)' : 'none'
             }}
           />
