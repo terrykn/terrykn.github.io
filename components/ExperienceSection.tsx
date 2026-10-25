@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, ExternalLink } from "lucide-react";
 import { ExperienceItem } from "@/types/portfolio";
 import { Section } from "@/components/Section";
-import { AnimatedTimeline, type TimelineEvent } from "@/components/animata/progress/animatedtimeline";
 
 interface ExperienceSectionProps {
   experience: ExperienceItem[];
@@ -38,10 +37,6 @@ function ExperienceLogo({ item }: { item: ExperienceItem }) {
   );
 }
 
-interface CustomTimelineEvent extends TimelineEvent {
-  item: ExperienceItem;
-}
-
 export function ExperienceSection({ experience }: ExperienceSectionProps) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
@@ -57,37 +52,21 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
     });
   };
 
-  const events: CustomTimelineEvent[] = experience.map((item) => ({
-    id: item.id,
-    title: item.role,
-    date: item.period,
-    item,
-  }));
-
   return (
     <Section id="experience" title="Experience">
-      <div className="mx-auto w-full max-w-3xl">
-        <AnimatedTimeline
-          events={events}
-          className="py-1"
-          styles={{
-            lineColor: "var(--border)",
-            activeLineColor: "var(--foreground)",
-            dotColor: "var(--border)",
-            activeDotColor: "var(--foreground)",
-            dotSize: "1.1rem",
-          }}
-          customEventRender={(event) => {
-            const customEvent = event as CustomTimelineEvent;
-            const item = customEvent.item;
-            const isOpen = expandedIds.has(item.id);
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-3">
+        {experience.map((item) => {
+          const isOpen = expandedIds.has(item.id);
 
-            return (
-              // Template-style card: rounded-3xl, hairline border, no surface tint
-              <div className="flex gap-3.5 rounded-3xl border border-foreground/5 bg-background p-3.5 sm:p-4">
-                <ExperienceLogo item={item} />
+          return (
+            // Template-style card: rounded-3xl, hairline border, no surface tint
+            <div
+              key={item.id}
+              className="flex gap-3.5 rounded-3xl border border-foreground/5 bg-background p-3.5 sm:p-4"
+            >
+              <ExperienceLogo item={item} />
 
-                <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1">
                 {/* Collapsible trigger header */}
                 <div
                   role="button"
@@ -194,12 +173,12 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                         )}
                       </div>
                     </motion.div>
-                  )}                  </AnimatePresence>
-                </div>
+                  )}
+                </AnimatePresence>
               </div>
-            );
-          }}
-        />
+            </div>
+          );
+        })}
       </div>
     </Section>
   );

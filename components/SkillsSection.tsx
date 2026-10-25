@@ -5,29 +5,30 @@ interface SkillsSectionProps {
   skills: SkillGroup[];
 }
 
-// Template-style skills: monochrome pill groups in rounded-4xl containers
-// (see example-template/components/about/skills.tsx).
+// Compact skills: one row per category — label on the left, monochrome
+// pills flowing to the right (4 rows total).
 export function SkillsSection({ skills }: SkillsSectionProps) {
   return (
     <Section id="skills" title="Skills">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="flex flex-col gap-3 sm:gap-4">
         {skills.map((group) => (
-          <div key={group.category} className="flex flex-col gap-3">
-            <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
+          <div
+            key={group.category}
+            className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-6"
+          >
+            <h3 className="text-[13px] sm:text-sm font-semibold tracking-tight text-foreground/60 sm:w-40 sm:shrink-0">
               {group.category}
             </h3>
 
-            <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-2 sm:p-4 dark:bg-foreground/5">
-              <div className="flex flex-wrap gap-2.5">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="cursor-default rounded-full border border-foreground/8 bg-background px-4 py-2 text-[14px] tracking-tight text-foreground/85 sm:text-[15px]"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="cursor-default rounded-full border border-foreground/8 bg-foreground/2 px-3 py-1 text-xs tracking-tight text-foreground/85 sm:text-[13px] dark:bg-foreground/5"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
           </div>
         ))}

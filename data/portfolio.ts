@@ -4,7 +4,7 @@ export const portfolioData: PortfolioData = {
   meta: {
     title: "Terry Nguyen | Full Stack Software Engineer",
     description:
-      "Personal portfolio of Terry Nguyen",
+      "Terry Nguyen is a full stack software engineer at Verizon building React and TypeScript applications, agentic AI assistants, and infrastructure tooling. B.A. in Computer Science and Mathematics from Rutgers University.",
   },
 
   navigation: [
