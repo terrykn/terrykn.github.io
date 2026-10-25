@@ -62,7 +62,7 @@ export const portfolioData: PortfolioData = {
       ],
     },
     {
-      category: "Databases & Storage",
+      category: "Databases",
       skills: [
         "PostgreSQL",
         "MySQL",

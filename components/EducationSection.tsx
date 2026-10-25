@@ -105,17 +105,21 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
                 <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
                   Activities
                 </h3>
-                <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-2 sm:p-4 dark:bg-foreground/5">
-                  <div className="flex flex-wrap gap-2.5">
-                    {honorsAndActivities.activities.map((act) => (
-                      <span
-                        key={act}
-                        className="inline-flex items-center rounded-full border border-foreground/8 bg-background px-4 py-2 text-[13px] tracking-tight text-foreground/85 sm:text-[14px]"
+                <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-4 sm:p-5 dark:bg-foreground/5">
+                  <ul className="space-y-2.5">
+                    {honorsAndActivities.activities.map((act, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-[13px] font-medium text-foreground/85 tracking-tight sm:text-[14px]"
                       >
+                        <span
+                          className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/40"
+                          aria-hidden="true"
+                        />
                         {act}
-                      </span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             )}
