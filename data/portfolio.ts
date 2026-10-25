@@ -19,7 +19,7 @@ export const portfolioData: PortfolioData = {
     greeting: "Hi, I'm",
     name: "Terry",
     title: "Software Engineer",
-    bio: "I'm a Full Stack Software Engineer at Verizon building AI-powered infrastructure tools from concept to production. My work centers on automating system-engineering workflows and managing enterprise Linux infrastructure for Verizon's business communications products.",
+    bio: "I'm a Full Stack Software Engineer at Verizon with experience building full-stack applications and AI-powered infrastructure tools from concept to production. My work centers on automating system-engineering workflows and managing enterprise Linux infrastructure for Verizon's business communications products.",
     socialLinks: [
       { label: "Projects", href: "#projects", isPrimary: true },
       {
@@ -115,6 +115,7 @@ export const portfolioData: PortfolioData = {
         "MongoDB",
         "MariaDB",
       ],
+      logo: "media/experience-logos/vz.jpg",
     },
 
     {
@@ -136,6 +137,7 @@ export const portfolioData: PortfolioData = {
         "Grafana",
         "Red Hat Enterprise Linux",
       ],
+      logo: "media/experience-logos/vz.jpg",
     },
 
     {
@@ -158,6 +160,7 @@ export const portfolioData: PortfolioData = {
         "Prompt Engineering",
         "LLM Evaluation",
       ],
+      logo: "media/experience-logos/da.jpg",
     },
 
     {
@@ -175,6 +178,7 @@ export const portfolioData: PortfolioData = {
         "Technical Support",
         "Event Management",
       ],
+      logo: "media/experience-logos/rutgers.jpg",
     },
 
     {
@@ -187,6 +191,7 @@ export const portfolioData: PortfolioData = {
         "Led a student team on prototyping and presenting an application to crowdsource critical information during floods in New Brunswick.",
       ],
       technologies: ["Rapid Prototyping", "UI/UX Design"],
+      logo: "media/experience-logos/climit.jpg",
     },
 
     {
@@ -203,6 +208,7 @@ export const portfolioData: PortfolioData = {
         "Data Collection",
         "Field Analysis",
       ],
+      logo: "media/experience-logos/idea.jpg",
     },
 
     {
@@ -215,6 +221,7 @@ export const portfolioData: PortfolioData = {
         "Designed, developed, and presented interactive web apps to help students learn and practice React development.",
       ],
       technologies: ["React", "JavaScript", "HTML/CSS"],
+      logo: "media/experience-logos/rutgers.jpg",
     },
 
     {
@@ -231,19 +238,21 @@ export const portfolioData: PortfolioData = {
         "Research Methodology",
         "Educational Psychology",
       ],
+      logo: "media/experience-logos/tc.jpg",
     },
   ],
 
   projects: [
     {
       id: "proj-tabmate",
-      title: "TabMate - Shared Subscriptions Splitter",
+      title: "TabMate",
       date: "Aug 2026",
       description:
-        "Full-stack application for splitting recurring expenses using a layered controller-service-repository architecture and Docker for containerized development. Features Spring Data JPA entities and REST API endpoints for custom queries and CRUD operations.",
+        "Full-stack application for splitting bills across shared recurring expenses.",
       tags: [
         "Java",
         "Spring Boot",
+        "Spring Data JPA",
         "React",
         "TypeScript",
         "PostgreSQL",
@@ -260,7 +269,7 @@ export const portfolioData: PortfolioData = {
       title: "CoPlay",
       date: "May 2026",
       description:
-        "Mobile app for watching videos and listening to music together.",
+        "Mobile app for watching videos and listening to music with friends in the same queue.",
       tags: ["React Native", "TypeScript"],
       demoUrl: "https://coplay-music.vercel.app",
       demoLabel: "Landing Page",
@@ -272,7 +281,7 @@ export const portfolioData: PortfolioData = {
       title: "Portfolio",
       date: "Sep 2026",
       description:
-        "Personal portfolio featuring my projects and experience. Designed with customized components from React Bits, Be UI, Animata, and Aceternity.",
+        "Personal portfolio featuring my projects and experience. Designed with components from React Bits, Be UI, Animata, and Aceternity.",
       tags: ["React", "TypeScript", "Next.js", "shadcn/ui"],
       demoUrl: "https://terrykn.github.io",
       demoLabel: "Website",
@@ -284,7 +293,7 @@ export const portfolioData: PortfolioData = {
       title: "Mobile App Landing Template",
       date: "May 2026",
       description:
-        "Built a flexible mobile app landing page template with a beautiful, modern layout.",
+        "Flexible web landing page template for mobile apps with a beautiful, modern layout.",
       tags: [
         "React",
         "Next.js 15",
@@ -317,7 +326,7 @@ export const portfolioData: PortfolioData = {
       title: "Growtopia Item Market",
       date: "Nov 2025",
       description:
-        "Developed an unofficial item marketplace web application for the Growtopia MMO game.",
+        "Game item marketplace for the Growtopia MMO game.",
       tags: ["React", "JavaScript", "Firebase", "Mantine UI"],
       demoUrl: "https://growtopia-trade.vercel.app",
       demoLabel: "Website",
@@ -327,9 +336,10 @@ export const portfolioData: PortfolioData = {
     {
       id: "proj-lofi-pomodoro",
       title: "Lofi Pomodoro",
+      subtitle: "Featured on Chrome Web Store",
       date: "Jul 2025",
       description:
-        "Chrome extension combining a customizable Pomodoro timer with live lo-fi music streams, featured on the Chrome Web Store.",
+        "Chrome extension with a customizable Pomodoro timer and live lo-fi music streams.",
       tags: ["JavaScript", "HTML/CSS"],
       demoUrl: "https://chromewebstore.google.com",
       demoLabel: "Chrome Web Store",
@@ -341,7 +351,7 @@ export const portfolioData: PortfolioData = {
       title: "Postify",
       date: "Jul 2025",
       description:
-        "Created a web app for generating album and lyric posters from Spotify album and song URLs.",
+        "Web app for generating album and lyric posters from Spotify album and song URLs.",
       tags: ["React", "JavaScript", "RapidAPI"],
       demoUrl: "https://postify-music.vercel.app",
       demoLabel: "Website",
@@ -355,7 +365,7 @@ export const portfolioData: PortfolioData = {
       title: "Face and Digit Classification",
       date: "May 2025",
       description:
-        "Benchmarked a custom implementation of MLP and Perceptron against a PyTorch baseline for classifying faces and digits, achieving 92% accuracy.",
+        "Benchmarked a custom implementation of MLP and Perceptron against a PyTorch baseline for classifying faces and digits with 92% accuracy.",
       tags: ["Python"],
       sourceUrl: "https://github.com/terrykn/face-and-digit-classification",
       sourceLabel: "GitHub",
@@ -364,9 +374,10 @@ export const portfolioData: PortfolioData = {
 
     {
       id: "proj-recipesnap",
-      title: "RecipeSnap (HackRU Spring '24 Winner)",
+      title: "RecipeSnap",
+      subtitle: "HackRU Spring '24 Winner",
       description:
-        "React Native mobile app with a Python and FastAPI backend that visually detects food items via Cloudflare AI image classification and Wakefern's API to generate recipes with live grocery prices from Edamam's API.",
+        "Mobile app that visually detects food items and generate recipes with live grocery prices.",
       tags: [
         "React Native",
         "JavaScript",
@@ -374,6 +385,7 @@ export const portfolioData: PortfolioData = {
         "FastAPI",
         "Expo",
         "Cloudflare AI",
+        "Edamam API"
       ],
       demoUrl: "https://devpost.com/software/recipesnap",
       demoLabel: "Devpost",

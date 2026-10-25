@@ -18,27 +18,27 @@ export function Section({
   fullWidthContent = false,
 }: SectionProps) {
   return (
-    <section id={id} className={`py-16 sm:py-24 ${className}`}>
-      {title && (
-        <header className="max-w-4xl mx-auto px-6 sm:px-8 mb-8 sm:mb-12">
-          {/* Minimal accent rule */}
-          <div className="mb-4 h-px w-10 bg-primary" aria-hidden="true" />
-          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-foreground leading-tight">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-              {subtitle}
-            </p>
-          )}
-        </header>
-      )}
+    <section id={id} className={`w-full py-16 sm:py-24 ${className}`}>
+      <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
+        {title && (
+          <header className="mb-10 flex flex-col items-center gap-4 text-center sm:mb-14">
+            <h2 className="text-[2rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[2.75rem]">
+              {title}
+            </h2>
+            {subtitle && (
+              <p className="max-w-[36ch] text-[16px] leading-[1.45] tracking-tight text-foreground/65 sm:text-[18px]">
+                {subtitle}
+              </p>
+            )}
+          </header>
+        )}
 
-      {fullWidthContent ? (
-        <div className="w-full">{children}</div>
-      ) : (
-        <div className="max-w-4xl mx-auto px-6 sm:px-8">{children}</div>
-      )}
+        {fullWidthContent ? (
+          <div className="w-full">{children}</div>
+        ) : (
+          <div>{children}</div>
+        )}
+      </div>
     </section>
   );
 }

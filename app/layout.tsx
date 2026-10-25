@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { portfolioData } from "@/data/portfolio";
-import AsciiBackdrop from "@/components/react-bits/AsciiBackdrop";
+import { PageBackdrop } from "@/components/layout/page-backdrop";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import "./globals.css";
 
 const dmSans = localFont({
@@ -32,6 +34,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0a0a0a" }],
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -41,28 +44,31 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground relative">
-        {/* Fixed futuristic ASCII light backdrop (horizon glow) */}
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-          <AsciiBackdrop />
-          {/* Top of the page fades to black so text stays readable */}
-          <div
-            className="absolute inset-x-0 top-0 h-[38vh]"
-            style={{ background: "linear-gradient(to bottom, var(--background) 0%, var(--background) 22%, transparent 100%)" }}
-          />
-        </div>
-
-        <div
-          className="relative z-10 flex-1 flex flex-col"
-          style={{
-            paddingTop: "env(safe-area-inset-top, 0px)",
-            paddingBottom: "env(safe-area-inset-bottom, 0px)",
-          }}
+      <body className="min-h-dvh bg-background font-sans text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
         >
-          {children}
-        </div>
+          {/* Fixed WebGL flow-shader backdrop behind the top of the page */}
+          <PageBackdrop />
+
+          <SmoothScroll>
+            <div
+              className="relative flex min-h-dvh flex-col"
+              style={{
+                paddingTop: "env(safe-area-inset-top, 0px)",
+                paddingBottom: "env(safe-area-inset-bottom, 0px)",
+              }}
+            >
+              {children}
+            </div>
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

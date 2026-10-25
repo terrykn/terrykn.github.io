@@ -1,5 +1,5 @@
 import { EducationItem, HonorsAndActivities } from "@/types/portfolio";
-import { Section } from "./Section";
+import { Section } from "@/components/Section";
 
 interface EducationSectionProps {
   education?: EducationItem[];
@@ -11,75 +11,111 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
 
   return (
     <Section id="education" title="Education">
-      <div className="space-y-6">
-        {/* Education cards */}
+      <div className="flex flex-col gap-6">
+        {/* Education: template rounded-4xl container with built-in and rounded-3xl rows */}
         {education && education.length > 0 && (
-          <div className="space-y-3">
-            {education.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-xl border border-border bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-              >
-                <div>
-                  <h3 className="text-base font-semibold text-foreground tracking-tight">
-                    {item.institution}
-                  </h3>
-                  <p className="mt-0.5 text-sm font-semibold text-muted-foreground">
-                    {item.degree}
-                    {item.gpa && (
-                      <span className="ml-2 text-xs font-semibold text-primary bg-accent px-2 py-0.5 rounded-full">
-                        GPA {item.gpa}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
+              Education
+            </h3>
+            <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-2 sm:p-4 dark:bg-foreground/5">
+              <ul className="flex flex-col gap-2">
+                {education.map((item) => (
+                  <li
+                    key={item.id}
+                    className="flex items-center gap-4 rounded-3xl border border-foreground/5 bg-background p-2 sm:p-3"
+                  >
+                    {/* Template-style logo square with initials */}
+                    <span
+                      className="border-foreground/15 inline-flex h-12 w-12 shrink-0 items-center justify-center border text-foreground/60"
+                      style={{ borderRadius: 14 }}
+                      aria-hidden="true"
+                    >
+                      <span className="text-[18px] font-semibold tracking-tight">
+                        {item.institution.charAt(0)}
                       </span>
-                    )}
-                  </p>
-                  {item.details && item.details.length > 0 && (
-                    <ul className="mt-1.5 space-y-1 text-xs sm:text-sm text-muted-foreground">
-                      {item.details.map((d, i) => <li key={i}>{d}</li>)}
-                    </ul>
-                  )}
-                </div>
-                <div className="shrink-0 sm:text-right text-xs font-semibold text-muted-foreground">
-                  <div>{item.period}</div>
-                  {item.location && <div className="text-muted-foreground/70 mt-0.5">{item.location}</div>}
-                </div>
-              </article>
-            ))}
+                    </span>
+
+                    <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 sm:flex-row sm:items-center">
+                      <div className="flex min-w-0 flex-col">
+                        <span className="text-[16px] font-semibold tracking-tight text-foreground sm:text-[17px]">
+                          {item.institution}
+                        </span>
+                        <span className="mt-0.5 min-w-0 truncate text-[13px] tracking-tight text-foreground/65 sm:text-[14px]">
+                          {item.degree}
+                          {item.gpa && (
+                            <span className="text-foreground/30">
+                              {" "}
+                              · GPA {item.gpa}
+                            </span>
+                          )}
+                        </span>
+                        {item.details && item.details.length > 0 && (
+                          <ul className="mt-1 space-y-1 text-xs tracking-tight text-foreground/55">
+                            {item.details.map((d, i) => (
+                              <li key={i}>{d}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+
+                      <div className="shrink-0 flex flex-col sm:items-end text-[13px] font-medium text-foreground/55">
+                        <span>{item.period}</span>
+                        {item.location && (
+                          <span className="text-foreground/30">{item.location}</span>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
 
         {/* Honors & Activities */}
         {honorsAndActivities && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {honorsAndActivities.honors?.length > 0 && (
-              <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                <h3 className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
+              <div className="flex flex-col gap-3">
+                <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
                   Awards
                 </h3>
-                <ul className="space-y-2">
-                  {honorsAndActivities.honors.map((honor, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-foreground">
-                      <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
-                      {honor}
-                    </li>
-                  ))}
-                </ul>
+                <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-4 sm:p-5 dark:bg-foreground/5">
+                  <ul className="space-y-2.5">
+                    {honorsAndActivities.honors.map((honor, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-[13px] font-medium text-foreground/85 tracking-tight sm:text-[14px]"
+                      >
+                        <span
+                          className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/40"
+                          aria-hidden="true"
+                        />
+                        {honor}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
 
             {honorsAndActivities.activities?.length > 0 && (
-              <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                <h3 className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
+              <div className="flex flex-col gap-3">
+                <h3 className="text-[15px] font-semibold tracking-tight text-foreground">
                   Activities
                 </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {honorsAndActivities.activities.map((act) => (
-                    <span
-                      key={act}
-                      className="inline-flex items-center rounded-full bg-muted border border-border px-2 py-1 text-xs font-medium text-foreground"
-                    >
-                      {act}
-                    </span>
-                  ))}
+                <div className="rounded-4xl border border-foreground/5 bg-foreground/2 p-2 sm:p-4 dark:bg-foreground/5">
+                  <div className="flex flex-wrap gap-2.5">
+                    {honorsAndActivities.activities.map((act) => (
+                      <span
+                        key={act}
+                        className="inline-flex items-center rounded-full border border-foreground/8 bg-background px-4 py-2 text-[13px] tracking-tight text-foreground/85 sm:text-[14px]"
+                      >
+                        {act}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}

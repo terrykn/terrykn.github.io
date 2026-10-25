@@ -31,6 +31,8 @@ export interface ExperienceItem {
   location?: string;
   description: string[];
   technologies?: string[];
+  /** Optional logo image served from public/ (e.g. media/experience-logos/verizon.png). */
+  logo?: string;
 }
 
 export type ProjectColor =
@@ -44,9 +46,14 @@ export type ProjectColor =
 export interface ProjectItem {
   id: string;
   title: string;
+  /** Short achievement line shown under the title (e.g. "Featured on Chrome Web Store"). */
+  subtitle?: string;
   date?: string;
   description: string;
   tags: string[];
+  /** Optional card image; omit for a text-only card. */
+  image?: string;
+  imageAlt?: string;
   demoUrl?: string;
   demoLabel?: string;
   sourceUrl?: string;

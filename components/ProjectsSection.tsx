@@ -1,336 +1,110 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ExternalLink, Sparkles } from "lucide-react";
 import { ProjectItem } from "@/types/portfolio";
-import { Section } from "./Section";
-import { PinContainer } from "@/components/aceternity/ui/3d-pin";
-import { cn } from "@/lib/utils";
+import { Section } from "@/components/Section";
+import { FadeIn } from "@/components/ui/motion-primitives";
 
 interface ProjectsSectionProps {
   projects: ProjectItem[];
 }
 
-const TILTS = [-2.2, 1.8, -1.5, 2.3, -1.8, 1.3, -2.4, 1.7, -1.1, 2.0];
-
-// Sleek monochrome project cards — single accent (the primary token)
-// keeps everything theme-driven (see docs/ARCHITECTURE.md).
-const TAG_STYLES = "bg-muted border-border text-muted-foreground";
-
-const normalizeIndex = (idx: number, len: number) => {
-  const mod = ((idx % len) + len) % len;
-  return mod + len;
-};
-
+/**
+ * Template-style masonry project wall (CSS columns): cards keep their natural
+ * height — full descriptions, every tag — with resting + hover shadow tiers
+ * and image zoom when a card has one. 2 columns on mobile, 3 on laptop.
+ */
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
-  const [displayIndex, setDisplayIndex] = useState(projects.length);
-  const [withTransition, setWithTransition] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(3);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  useEffect(() => {
-    const updateVisible = () => {
-      if (window.innerWidth < 640) {
-        setVisibleCount(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCount(2);
-      } else {
-        setVisibleCount(3);
-      }
-    };
-
-    updateVisible();
-    window.addEventListener("resize", updateVisible);
-
-    return () => window.removeEventListener("resize", updateVisible);
-  }, []);
-
-  useEffect(() => {
-    if (!withTransition) {
-      const frame = requestAnimationFrame(() => {
-        setWithTransition(true);
-      });
-
-      return () => cancelAnimationFrame(frame);
-    }
-  }, [withTransition]);
-
-  const handlePrev = () => {
-    setWithTransition(true);
-    setDisplayIndex((prev) => prev - 1);
-  };
-
-  const handleNext = () => {
-    setWithTransition(true);
-    setDisplayIndex((prev) => prev + 1);
-  };
-
-  const handleTransitionEnd = () => {
-    if (
-      displayIndex >= 2 * projects.length ||
-      displayIndex < projects.length
-    ) {
-      setWithTransition(false);
-      setDisplayIndex(normalizeIndex(displayIndex, projects.length));
-    }
-  };
-
-  const minSwipeDistance = 45;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-
-    if (distance > minSwipeDistance) {
-      handleNext();
-    } else if (distance < -minSwipeDistance) {
-      handlePrev();
-    }
-  };
-
-  const activeProjectIndex =
-    ((displayIndex % projects.length) + projects.length) %
-    projects.length;
-
-  const handleDotClick = (targetProjectIndex: number) => {
-    setWithTransition(true);
-
-    let diff = targetProjectIndex - activeProjectIndex;
-
-    if (diff > projects.length / 2) {
-      diff -= projects.length;
-    }
-
-    if (diff < -projects.length / 2) {
-      diff += projects.length;
-    }
-
-    setDisplayIndex((prev) => prev + diff);
-  };
-
-  const extendedProjects = [...projects, ...projects, ...projects];
-
   return (
-    <Section id="projects" title="Projects" fullWidthContent>
-      <div
-        className="relative w-full select-none overflow-hidden py-3 sm:py-4"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        {/* Previous */}
-        <button
-          type="button"
-          onClick={handlePrev}
-          aria-label="Previous project"
-          className={cn(
-            "absolute left-3 top-1/2 z-40 -translate-y-1/2",
-            "flex h-11 w-11 items-center justify-center rounded-full",
-            "border border-border bg-popover shadow-lg shadow-black/40",
-            "text-muted-foreground",
-            "sm:left-6 sm:h-12 sm:w-12 md:left-8",
-          )}
-        >
-          <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-        </button>
-
-        {/* Next */}
-        <button
-          type="button"
-          onClick={handleNext}
-          aria-label="Next project"
-          className={cn(
-            "absolute right-3 top-1/2 z-40 -translate-y-1/2",
-            "flex h-11 w-11 items-center justify-center rounded-full",
-            "border border-border bg-popover shadow-lg shadow-black/40",
-            "text-muted-foreground",
-            "sm:right-6 sm:h-12 sm:w-12 md:right-8",
-          )}
-        >
-          <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-        </button>
-
-        {/* Sliding track */}
-        <div
-          onTransitionEnd={handleTransitionEnd}
-          className={cn(
-            "flex will-change-transform",
-            withTransition && "transition-transform duration-500 ease-out",
-          )}
-          style={{
-            transform: `translateX(-${
-              displayIndex * (100 / visibleCount)
-            }%)`,
-          }}
-        >
-          {extendedProjects.map((project, idx) => {
-            const primaryHref =
-              project.demoUrl || project.sourceUrl || "#";
-
-            const pinTitle = project.demoUrl
-              ? project.demoLabel ?? "Live Demo"
-              : project.sourceLabel ?? "GitHub";
-
-            const projectIndex = idx % projects.length;
-            const tilt = TILTS[projectIndex % TILTS.length];
-
-            return (
-              <div
-                key={`${project.id}-${idx}`}
-                className="flex shrink-0 items-center justify-center px-3 sm:px-4 md:px-5"
-                style={{
-                  width: `${100 / visibleCount}%`,
-                }}
-              >
-                <PinContainer
-                  title={pinTitle}
-                  href={primaryHref}
-                  tilt={tilt}
-                  accentColor="var(--primary)"
-                  cardClassName="bg-card"
-                  containerClassName="h-[22rem] w-full max-w-[19rem] flex items-center justify-center sm:max-w-[20.5rem]"
-                >
-                  <div
-                    className={cn(
-                      "flex h-[19rem] w-[17rem] flex-col justify-between",
-                      "p-1 sm:w-[18.5rem]",
-                      "text-foreground",
-                    )}
-                  >
-                    <div>
-                      {/* Header */}
-                      <div className="mb-3 flex items-start justify-between gap-2">
-                        <h3 className="truncate text-xl font-semibold leading-tight tracking-[-0.025em]">
-                          {project.title}
-                        </h3>
-
-                        {project.date && (
-                          <span
-                            className={cn(
-                              "shrink-0 rounded-full px-2.5 py-1",
-                              "text-[10px] font-semibold tracking-wide",
-                              TAG_STYLES,
-                            )}
-                          >
-                            {project.date}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Description */}
-                      <p className="mb-4 line-clamp-6 text-sm font-medium leading-relaxed opacity-75">
-                        {project.description}
-                      </p>
-
-                      {/* Tech tags */}
-                      <div className="mb-4 flex flex-wrap gap-1.5">
-                        {project.tags.slice(0, 4).map((tag) => (
-                          <span
-                            key={tag}
-                            className={cn(
-                              "rounded-full border px-2.5 py-1",
-                              "text-[10px] font-semibold tracking-wide",
-                              TAG_STYLES,
-                            )}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-
-                        {project.tags.length > 4 && (
-                          <span
-                            className={cn(
-                              "rounded-full border px-2.5 py-1",
-                              "text-[10px] font-semibold",
-                              TAG_STYLES,
-                              "opacity-60",
-                            )}
-                          >
-                            +{project.tags.length - 4}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex items-center gap-4 border-t border-border pt-3">
-                      {project.demoUrl && (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className={cn(
-                            "inline-flex items-center gap-1.5",
-                            "text-xs font-semibold",
-                          )}
-                        >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                          {project.demoLabel ?? "Demo"}
-                        </a>
-                      )}
-
-                      {project.sourceUrl && (
-                        <a
-                          href={project.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold opacity-70"
-                        >
-                          <svg
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                            />
-                          </svg>
-
-                          {project.sourceLabel ?? "Source"}
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </PinContainer>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Indicators */}
-      <div className="mt-2 flex items-center justify-center gap-1.5">
-        {projects.map((project, idx) => (
-          <button
-            key={project.id}
-            type="button"
-            onClick={() => handleDotClick(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            className={cn(
-              "h-1.5 cursor-pointer rounded-full transition-all duration-300",
-              activeProjectIndex === idx
-                ? "w-6 bg-primary"
-                : "w-1.5 bg-border",
-            )}
-          />
+    <Section id="projects" title="Projects">
+      <div className="columns-2 gap-4 sm:gap-6 lg:columns-3">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>
     </Section>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: ProjectItem;
+  index: number;
+}) {
+  const primaryHref = project.demoUrl || project.sourceUrl || "#";
+  const primaryLabel = project.demoUrl
+    ? project.demoLabel ?? "Live demo"
+    : project.sourceLabel ?? "GitHub";
+
+  return (
+    <FadeIn
+      delay={Math.min(index * 0.06, 0.3)}
+      className="mb-4 break-inside-avoid sm:mb-6"
+    >
+      <article className="project-card cursor-pointer flex flex-col gap-2.5 rounded-3xl border border-foreground/8 bg-background p-3 sm:p-3.5">
+        {/* Optional image: template rounded-2xl inset with hover zoom */}
+        {project.image && (
+          <div className="project-card__image ring-foreground/5 relative w-full overflow-hidden rounded-2xl bg-foreground/5 ring-1">
+            <div className="project-card__image-inner">
+              {/* Plain img so any optional host works without next.config changes */}
+              <img
+                src={project.image}
+                alt={project.imageAlt ?? project.title}
+                className="block w-full align-bottom"
+                loading={index < 3 ? "eager" : "lazy"}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-2 px-1">
+          <h3 className="text-[15px] font-medium leading-[1.25] tracking-tight text-foreground sm:text-[17px]">
+            {project.title}
+          </h3>
+          {project.subtitle && (
+            <p className="inline-flex items-center gap-1.5 text-[11px] font-medium tracking-tight text-foreground/55">
+              <Sparkles className="h-3 w-3 shrink-0" aria-hidden="true" />
+              {project.subtitle}
+            </p>
+          )}
+          <p className="text-[12px] leading-normal tracking-tight text-foreground/65 sm:text-[13px]">
+            {project.description}
+          </p>
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 px-1">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-foreground/8 bg-background px-2 py-0.5 text-[10px] font-medium tracking-tight text-foreground/60"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Meta + primary link */}
+        <div className="flex items-center justify-between gap-2 border-t border-foreground/5 px-1 pt-3 pb-1">
+          {project.date && (
+            <span className="text-[11px] tracking-tight text-foreground/50">
+              {project.date}
+            </span>
+          )}
+          <a
+            href={primaryHref}
+            target={primaryHref.startsWith("http") ? "_blank" : undefined}
+            rel={primaryHref.startsWith("http") ? "noopener noreferrer" : undefined}
+            onClick={(e) => e.stopPropagation()}
+            className="focus-ring inline-flex cursor-pointer items-center gap-1.5 text-[12px] font-medium text-foreground transition-opacity hover:opacity-70"
+          >
+            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            {primaryLabel}
+          </a>
+        </div>
+      </article>
+    </FadeIn>
   );
 }

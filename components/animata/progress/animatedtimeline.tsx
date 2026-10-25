@@ -104,7 +104,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
     const lineFillStyle: React.CSSProperties = {
         backgroundColor: styles.activeLineColor,
         transform: isLineActive ? "scaleY(1)" : "scaleY(0)",
-        transformOrigin: "bottom",
+        transformOrigin: "top",
         transitionProperty: "transform",
         transitionDuration: `${LINE_DURATION}s`,
         transitionDelay: `${lineDelay}s`,
@@ -216,8 +216,15 @@ export function AnimatedTimeline({
         // biome-ignore lint/a11y/noStaticElementInteractions: mouseLeave only clears hover state on the list container
         <div className={`relative py-4 ${className}`} onMouseLeave={() => setActive(null)}>
             {events.map((event, index) => {
-                const isDotActive = state.active !== null && index <= state.active;
-                const isLineActive = state.active !== null && index < state.active;
+                // Timeline fills downward from the hovered entry: the list is
+                // ordered most-recent-first, so the top dot is the "present"
+                // marker. At rest only the top dot stays filled; hovering an
+                // item rewinds the fill to that point and everything below it.
+                const isDotActive =
+                    state.active !== null
+                        ? index >= state.active
+                        : index === 0;
+                const isLineActive = state.active !== null && index >= state.active;
                 const { dotDelay, lineDelay } = computeDelays(index, state.active, state.prev);
                 return (
                     <TimelineItem
