@@ -17,13 +17,32 @@ export function HeroSection({ data }: HeroSectionProps) {
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[1fr_auto]">
           {/* Left: hero content */}
           <FadeIn className="flex flex-col gap-4">
-            <p className="text-[20px] font-medium leading-tight tracking-tight text-foreground">
-              {data.greeting ?? "Hi, I'm"} {data.name}!
-            </p>
+            {/* Greeting + title stacked, with the small mobile-only portrait
+                anchored to their right edge, vertically centered on mobile. */}
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex min-w-0 flex-col gap-4">
+                <p className="text-[20px] font-medium leading-tight tracking-tight text-foreground">
+                  {data.greeting ?? "Hi, I'm"} {data.name}!
+                </p>
 
-            <h1 className="text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground lg:text-[3.65rem]">
-              {data.title}
-            </h1>
+                <h1 className="text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground lg:text-[3.65rem]">
+                  {data.title}
+                </h1>
+              </div>
+
+              {/* Small portrait, mobile/smaller screens only (desktop uses the large frame below) */}
+              <ScaleUnblur className="flex shrink-0 justify-end md:hidden">
+                <div className="relative aspect-[4/5] w-20 overflow-hidden rounded-3xl border border-foreground/8 bg-background p-1 shadow-sm">
+                  <div className="relative h-full w-full overflow-hidden rounded-2xl">
+                    <img
+                      src="/media/pfp.jpg"
+                      alt={data.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </ScaleUnblur>
+            </div>
 
             <p className="mt-1 max-w-2xl text-[18px] leading-[1.55] tracking-tight text-foreground/65 sm:text-[20px]">
               {data.bio}
@@ -68,8 +87,9 @@ export function HeroSection({ data }: HeroSectionProps) {
             </div>
           </FadeIn>
 
-          {/* Right: static portrait in template-style rounded frame */}
-          <ScaleUnblur className="flex justify-center md:justify-end">
+          {/* Right: static portrait in template-style rounded frame
+              (mobile shows the compact one above instead) */}
+          <ScaleUnblur className="hidden justify-center md:flex md:justify-end">
             <div className="relative aspect-[4/5] w-40 overflow-hidden rounded-4xl border border-foreground/8 bg-background p-1 shadow-sm md:w-48">
               <div className="relative h-full w-full overflow-hidden rounded-3xl">
                 <img

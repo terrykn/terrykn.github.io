@@ -31,7 +31,7 @@ export interface ExperienceItem {
   location?: string;
   description: string[];
   technologies?: string[];
-  /** Optional logo image served from public/ (e.g. media/experience-logos/verizon.png). */
+  /** Optional logo image served from public/ (e.g. media/logos/verizon.png). */
   logo?: string;
 }
 
@@ -69,6 +69,8 @@ export interface EducationItem {
   location?: string;
   gpa?: string;
   details?: string[];
+  /** Optional logo image served from public/ (e.g. media/logos/rutgers.jpg). */
+  logo?: string;
 }
 
 export interface HonorsAndActivities {

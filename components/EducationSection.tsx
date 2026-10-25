@@ -25,15 +25,26 @@ export function EducationSection({ education, honorsAndActivities }: EducationSe
                     key={item.id}
                     className="flex items-center gap-4 rounded-3xl border border-foreground/5 bg-background p-2 sm:p-3"
                   >
-                    {/* Template-style logo square with initials */}
+                    {/* Template-style logo square; falls back to the
+                        institution initial until a logo path exists. */}
                     <span
-                      className="border-foreground/15 inline-flex h-12 w-12 shrink-0 items-center justify-center border text-foreground/60"
+                      className="border-foreground/15 inline-flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden border text-foreground/60"
                       style={{ borderRadius: 14 }}
                       aria-hidden="true"
                     >
-                      <span className="text-[18px] font-semibold tracking-tight">
-                        {item.institution.charAt(0)}
-                      </span>
+                      {item.logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={item.logo}
+                          alt=""
+                          draggable={false}
+                          className="h-full w-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-[18px] font-semibold tracking-tight">
+                          {item.institution.charAt(0)}
+                        </span>
+                      )}
                     </span>
 
                     <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 sm:flex-row sm:items-center">

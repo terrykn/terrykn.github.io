@@ -12,7 +12,7 @@ interface ExperienceSectionProps {
 
 // Small rounded logo square on the left of each experience card
 // (template-style). Falls back to the company initial until a logo
-// path (public/media/experience-logos/...) is added to the data.
+// path (public/media/logos/...) is added to the data.
 function ExperienceLogo({ item }: { item: ExperienceItem }) {
   return (
     <span
@@ -38,25 +38,19 @@ function ExperienceLogo({ item }: { item: ExperienceItem }) {
 }
 
 export function ExperienceSection({ experience }: ExperienceSectionProps) {
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  // Accordion behavior: at most one card expanded at a time; tapping an
+  // open card closes it, tapping another closes the previous one.
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const toggleExpand = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+    setOpenId((prev) => (prev === id ? null : id));
   };
 
   return (
     <Section id="experience" title="Experience">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-3">
         {experience.map((item) => {
-          const isOpen = expandedIds.has(item.id);
+          const isOpen = openId === item.id;
 
           return (
             // Template-style card: rounded-3xl, hairline border, no surface tint

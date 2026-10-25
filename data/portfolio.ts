@@ -115,7 +115,7 @@ export const portfolioData: PortfolioData = {
         "MongoDB",
         "MariaDB",
       ],
-      logo: "media/experience-logos/vz.jpg",
+      logo: "media/logos/vz.jpg",
     },
 
     {
@@ -137,7 +137,7 @@ export const portfolioData: PortfolioData = {
         "Grafana",
         "Red Hat Enterprise Linux",
       ],
-      logo: "media/experience-logos/vz.jpg",
+      logo: "media/logos/vz.jpg",
     },
 
     {
@@ -160,7 +160,7 @@ export const portfolioData: PortfolioData = {
         "Prompt Engineering",
         "LLM Evaluation",
       ],
-      logo: "media/experience-logos/da.jpg",
+      logo: "media/logos/da.jpg",
     },
 
     {
@@ -178,7 +178,7 @@ export const portfolioData: PortfolioData = {
         "Technical Support",
         "Event Management",
       ],
-      logo: "media/experience-logos/rutgers.jpg",
+      logo: "media/logos/rutgers.jpg",
     },
 
     {
@@ -191,7 +191,7 @@ export const portfolioData: PortfolioData = {
         "Led a student team on prototyping and presenting an application to crowdsource critical information during floods in New Brunswick.",
       ],
       technologies: ["Rapid Prototyping", "UI/UX Design"],
-      logo: "media/experience-logos/climit.jpg",
+      logo: "media/logos/climit.jpg",
     },
 
     {
@@ -208,7 +208,7 @@ export const portfolioData: PortfolioData = {
         "Data Collection",
         "Field Analysis",
       ],
-      logo: "media/experience-logos/idea.jpg",
+      logo: "media/logos/idea.jpg",
     },
 
     {
@@ -221,7 +221,7 @@ export const portfolioData: PortfolioData = {
         "Designed, developed, and presented interactive web apps to help students learn and practice React development.",
       ],
       technologies: ["React", "JavaScript", "HTML/CSS"],
-      logo: "media/experience-logos/rutgers.jpg",
+      logo: "media/logos/rutgers.jpg",
     },
 
     {
@@ -238,7 +238,7 @@ export const portfolioData: PortfolioData = {
         "Research Methodology",
         "Educational Psychology",
       ],
-      logo: "media/experience-logos/tc.jpg",
+      logo: "media/logos/tc.jpg",
     },
   ],
 
@@ -400,6 +400,7 @@ export const portfolioData: PortfolioData = {
       degree: "M.S. in Computer Science, Machine Learning Specialization",
       period: "Aug 2026 - Present",
       location: "Online (Part-Time)",
+      logo: "media/logos/gt.jpg",
     },
     {
       id: "edu-rutgers",
@@ -408,6 +409,7 @@ export const portfolioData: PortfolioData = {
       period: "Sep 2022 - May 2025",
       location: "New Brunswick, NJ",
       gpa: "3.63",
+      logo: "media/logos/rutgers.jpg",
     },
   ],
 
