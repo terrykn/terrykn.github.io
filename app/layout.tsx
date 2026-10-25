@@ -55,6 +55,9 @@ export const metadata: Metadata = {
   creator: "Terry Nguyen",
   alternates: { canonical: SITE_URL },
   robots: { index: true, follow: true },
+  verification: {
+    google: "f5IjL1YT45At2nmcMoWplPvxs16DepJ_LnMoRruB1fQ",
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,
